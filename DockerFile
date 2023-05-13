@@ -1,0 +1,9 @@
+FROM golang:1.16
+
+WORKDIR /SDU_Student_Grade_Tracker
+
+COPY SDU_Student_Grade_Tracker .
+
+RUN go get "github.com/go-redis/redis"
+
+RUN go run main.go

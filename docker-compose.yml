@@ -1,0 +1,27 @@
+version: '3'
+services:
+  database:
+    image: redis:6.2
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server
+    volumes: 
+      - .:/data
+  app:
+    container_name: SDU_Student_Grade_Tracker
+    image: SDU_Student_Grade_Tracker
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
+    links:
+      - database
+    volumes:
+      - .:/SDU_Student_Grade_Tracker
+
+volumes:
+  database:
+    driver: local
+  app:
+    driver: local
